@@ -1,37 +1,65 @@
 class Array
 
-	def combine(result)
-		combined_array = [result]+self
+	def initialize
+		super.initialize
+		@result_holder =0
 	end
 
-	
+	def combine(result)
+			combined_array = [result]+self
+	end
+
+	def get_length(arr)
+		arr.length - 1
+	end
 
 	def new_inject(result)
 		combined_array = combine(result)
-		# puts "Combined array " + combined_array.to_s
-		iterations = combined_array.length - 1
-		# puts iterations
-		result_holder = 0
+		iterations = get_length(combined_array)
 		iterations.times do 
-			# puts "One Iteration"
-			passed_array = combined_array.take(2)
-			# puts "Passed array " + passed_array.to_s
-			result = yield(passed_array)
-			result_holder = result
-			# puts result
-			combined_array = combined_array.drop(2)
-			# puts combined_array.to_s
-			combined_array = [result]+combined_array
-			# puts combined_array.to_s
-			# puts "================================"
-			# puts "================================"
+			@result_holder = yield(combined_array.take(2))
+			combined_array = [@result_holder]+combined_array.drop(2)
 		end
-
-		return result_holder
+		@result_holder
 	end
 
 
-
-
-
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			# result = yield(combined_array.take(2))
+			# result_holder = result 
+			# combined_array = [result]+combined_array.drop(2)
+
+# result_holder = 0
+		# iterations.times do 
+		# 	passed_array = combined_array.take(2)
+		# 	result = yield(passed_array)
+		# 	result_holder = result
+		# 	combined_array = combined_array.drop(2)
+		# 	combined_array = [result]+combined_array
+		# end
+
+		# return result_holder
