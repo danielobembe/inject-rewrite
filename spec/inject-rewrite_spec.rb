@@ -13,4 +13,9 @@ describe Array do
 		expect(arr.combine(0)).to eq [0,1,2,3,4]
 	end
 
+	it "should be able to sum an array of numbers" do 
+		arr = [1,2,3,4]
+		expect(arr.new_inject(0){|x,y| x+y}).to eq 10
+	end
+
 end
